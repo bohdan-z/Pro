@@ -1,51 +1,25 @@
 'use strict';
 
-let c = prompt("Введите действие которое хотите совершить: +, -, *, /");
+let list = document.querySelector('ul');
+list.addEventListener('click', function (ev) {
+    if(ev.target.tagName === "LI") {
+       ev.target.classList.toggle('checked');
+    } else if(ev.target.tagName === "SPAN") {
+       let div = ev.target.parentNode;
+       div.remove();
+    }
+}, false);
 
-let a = +prompt('Введите первое число');
-
-// do {
-//     let a = +prompt('Введите первое число');
-// }while (isNaN(a));
-
-
-let b = +prompt('Введите второе число');
-// do {
-//     let b = +prompt('Введите второе число');
-// }while (isNaN(b));
-
-let res;
-
-
-switch (c) {
-    case '+':
-          alert(res = a + b);
-      break;
-  
-      case '-':
-          alert(res = a - b);
-      break;
-  
-      case '*':
-          alert(res = a * b);
-      break;
-  
-      case '/':
-          alert(res = a / b);
-      break;
-  
-      default: 
-          alert(res ='Непонятно');
-  }
-  
-  
-
-
-
-
-
-
-
-
-
-
+function newElement() {
+    let li = document.createElement('li');
+    let inputValue = document.getElementById('toDoEl').value;
+    let t = document.createTextNode(inputValue);
+    li.appendChild(t);
+    if(inputValue == "") {
+       alert("Поле ввода не может быть пустым!");
+    } else {
+       document.getElementById('list').appendChild(li);
+    }
+    document.getElementById('toDoEl').value = "";
+    
+}
